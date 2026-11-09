@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplikasi kasir pintar Toko Anjar untuk mengelola transaksi dan operasional usaha.">
+    <title>Kasir Pintar | Toko Anjar</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <main class="auth-screen" id="authScreen" hidden>
+        <section class="auth-card" aria-labelledby="authTitle">
+            <span class="brand-mark auth-brand-mark" aria-hidden="true">A</span>
+            <p class="eyebrow">KASIR PINTAR</p>
+            <h1 id="authTitle">Masuk ke akun</h1>
+            <p class="auth-description">Masuk untuk membuka data usaha yang tersimpan di akunmu.</p>
+            <button class="auth-provider auth-google" id="googleSignIn" type="button" disabled><span aria-hidden="true">G</span> Lanjutkan dengan Google</button>
+            <button class="auth-provider auth-facebook" id="facebookSignIn" type="button" disabled><span aria-hidden="true">f</span> Lanjutkan dengan Facebook</button>
+            <p class="auth-status" id="authStatus" role="status" aria-live="polite">Menghubungkan ke Firebase...</p>
+            <div class="auth-recovery" id="authRecovery" hidden>
+                <button class="button button-outline" id="authRetry" type="button">Coba lagi</button>
+                <button class="button button-quiet" id="authSignOut" type="button">Keluar dari akun</button>
+            </div>
+            <p class="auth-note">Data kasir disimpan terpisah untuk setiap akun.</p>
+        </section>
+    </main>
+
+    <div class="app-shell" id="appShell" hidden>
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" href="#" data-page="dashboard" aria-label="Kasir Pintar, dashboard">
+                <span class="brand-mark">A</span>
+                <span class="brand-copy"><strong id="sidebarBusinessName">Toko Anjar</strong><small>APLIKASI KASIR PINTAR</small></span>
+            </a>
+            <div class="sidebar-label">MENU UTAMA</div>
+            <nav class="side-nav" id="sideNav" aria-label="Menu aplikasi"></nav>
+            <div class="sidebar-bottom">
+                <span class="status-dot"></span>
+                <span>Mode akun <small>Data tersinkron per akun</small></span>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <header class="topbar">
+                <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Buka menu">☰</button>
+                <div class="breadcrumb"><span id="topBusinessName">Toko Anjar</span><span>/</span><strong id="pageBreadcrumb">Dashboard</strong></div>
+                <div class="topbar-actions">
+                    <span class="today-label" id="todayLabel"></span>
+                    <button class="button button-outline button-small help-button" id="helpButton" type="button"><span aria-hidden="true">?</span> Panduan</button>
+                    <span class="account-label" id="accountLabel"></span>
+                    <button class="button button-outline button-small" id="signOutButton" type="button" hidden>Keluar</button>
+                    <button class="profile-button" id="profileButton" type="button" aria-label="Buka pengaturan profil"><span class="profile-avatar">A</span><span id="profileName">Alip</span><span aria-hidden="true">⌄</span></button>
+                </div>
+            </header>
+
+            <div class="storage-warning" id="storageWarning" role="alert" hidden></div>
+            <main class="page-content" id="pageContent" tabindex="-1"></main>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="modal-root" id="modalRoot" hidden></div>
+    <div class="tutorial-root" id="tutorialRoot" aria-hidden="true" hidden>
+        <button class="tutorial-backdrop" type="button" data-tutorial-close aria-label="Tutup panduan"></button>
+        <section class="tutorial-dialog" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle" aria-describedby="tutorialDescription">
+            <button class="tutorial-close" type="button" data-tutorial-close aria-label="Tutup panduan">&times;</button>
+            <div class="tutorial-progress" id="tutorialProgress" aria-label="Langkah panduan"></div>
+            <div class="tutorial-icon" id="tutorialIcon" aria-hidden="true"></div>
+            <p class="eyebrow">PANDUAN PENGGUNA</p>
+            <h2 id="tutorialTitle"></h2>
+            <p class="tutorial-description" id="tutorialDescription"></p>
+            <p class="tutorial-tip" id="tutorialTip"></p>
+            <div class="tutorial-footer">
+                <button class="button button-quiet" id="tutorialSkip" type="button">Lewati</button>
+                <div class="tutorial-navigation">
+                    <button class="button button-outline" id="tutorialPrevious" type="button">Sebelumnya</button>
+                    <button class="button button-primary" id="tutorialNext" type="button">Lanjut</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="Script.js"></script>
+</body>
+</html>
